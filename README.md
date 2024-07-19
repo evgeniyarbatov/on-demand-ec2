@@ -8,8 +8,7 @@ Ex: your have a Streamlit app which you host with [Streamlit Community Cloud](ht
 
 ## Structure
 
-- API GW writes to SQS queue
-- SQS queue stores API parameters
+- API GW calls Lambda function
 - Lambda function launches EC2 instance
 - EC2 instance does processing
 - EC2 publishes the result to SNS topic
@@ -20,4 +19,5 @@ Ex: your have a Streamlit app which you host with [Streamlit Community Cloud](ht
 tf init
 tf apply -auto-approve
 tf output -raw curl
+tf destroy -auto-approve
 ```

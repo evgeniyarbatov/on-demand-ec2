@@ -5,25 +5,13 @@ import os
 def lambda_handler(event, context):
     ec2 = boto3.client('ec2')
 
-    instance_ami = os.environ['INSTANCE_AMI']
-    instance_type = os.environ['INSTANCE_TYPE']
+    instance_id = os.environ['INSTANCE_ID']
 
-    response = ec2.describe_instances(
-        Filters=[
-            {'Name': 'image-id', 'Values': [instance_ami]},
-            {'Name': 'instance-type', 'Values': [instance_type]},
-        ]
-    )
+    response = ec2.describe_instances(InstanceIds=[instance_id])
+    instance_state = response['Reservations'][0]['Instances'][0]['State']['Name']
     
-    existing_instances = [instance for reservation in response['Reservations'] for instance in reservation['Instances']]
-    
-    if not existing_instances:
-        ec2.run_instances(
-            ImageId=instance_ami,
-            InstanceType=instance_type,
-            MinCount=1,
-            MaxCount=1
-        )
+    if instance_state == 'stopped':
+        ec2.start_instances(InstanceIds=[instance_id])
 
     return {
         'statusCode': 200, 
