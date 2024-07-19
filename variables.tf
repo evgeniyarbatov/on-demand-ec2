@@ -6,10 +6,6 @@ variable "instance_type" {
   default = "t2.nano"
 }
 
-variable "api_gw_path" {
-  default = "submit"
-}
-
 variable "key_name" {
   default = "terraform"
 }

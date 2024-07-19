@@ -85,7 +85,10 @@ resource "aws_instance" "ec2" {
       "sudo chmod +x /usr/local/bin/docker-compose",
       "sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose",
       "sudo service docker start",
-      "sudo docker-compose -f /home/ubuntu/docker-compose.yaml up -d",
+      "sudo cp osrm.service /etc/systemd/system/osrm.service",
+      "sudo systemctl daemon-reload",
+      "sudo systemctl enable osrm",
+      "sudo systemctl start osrm",
     ]
   }
 }
