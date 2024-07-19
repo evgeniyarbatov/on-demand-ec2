@@ -19,4 +19,5 @@ Ex: your have a Streamlit app which you host with [Streamlit Community Cloud](ht
 ```
 tf init
 tf apply -auto-approve
+tf output -raw curl
 ```

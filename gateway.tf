@@ -5,7 +5,7 @@ resource "aws_api_gateway_rest_api" "api" {
 resource "aws_api_gateway_resource" "resource" {
   rest_api_id = aws_api_gateway_rest_api.api.id
   parent_id   = aws_api_gateway_rest_api.api.root_resource_id
-  path_part   = "submit"
+  path_part   = var.api_gw_path
 }
 
 resource "aws_api_gateway_method" "post_method" {
