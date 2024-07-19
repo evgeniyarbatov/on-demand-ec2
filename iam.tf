@@ -22,7 +22,7 @@ resource "aws_iam_policy" "lambda_policy" {
         Effect = "Allow",
         Action = [
           "logs:*",
-          "ec2:RunInstances",
+          "ec2:StartInstances",
           "ec2:DescribeInstances",
         ],
         Resource = "*"
