@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "api" {
-  name        = "EC2 API GW"
+  name = "EC2 API GW"
 }
 
 resource "aws_api_gateway_resource" "resource" {
@@ -9,10 +9,10 @@ resource "aws_api_gateway_resource" "resource" {
 }
 
 resource "aws_api_gateway_method" "post_method" {
-  rest_api_id     = aws_api_gateway_rest_api.api.id
-  resource_id     = aws_api_gateway_resource.resource.id
-  http_method     = "POST"
-  authorization   = "NONE"
+  rest_api_id      = aws_api_gateway_rest_api.api.id
+  resource_id      = aws_api_gateway_resource.resource.id
+  http_method      = "POST"
+  authorization    = "NONE"
   api_key_required = true
 }
 
@@ -43,8 +43,8 @@ resource "aws_lambda_permission" "api_gateway" {
 }
 
 resource "aws_api_gateway_api_key" "api_key" {
-  name        = "EC2 API GW Key"
-  enabled     = true
+  name    = "EC2 API GW Key"
+  enabled = true
 }
 
 resource "aws_api_gateway_usage_plan" "usage_plan" {
