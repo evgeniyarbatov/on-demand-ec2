@@ -4,8 +4,8 @@ data "archive_file" "stop_instance_lambda_function" {
   output_path = "stop-instance-lambda/lambda_function.zip"
 }
 
-resource "aws_lambda_function" "check_and_stop_ec2" {
-  function_name = "check_and_stop_ec2"
+resource "aws_lambda_function" "stop_ec2" {
+  function_name = "stop_ec2"
   role          = aws_iam_role.lambda_exec.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.8"
