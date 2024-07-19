@@ -1,7 +1,7 @@
 data "archive_file" "stop_instance_lambda_function" {
   type        = "zip"
-  source_file = "stop-instance-lambda/lambda-function.py"
-  output_path = "stop-instance-lambda/lambda-function.zip"
+  source_file = "stop-instance-lambda/lambda_function.py"
+  output_path = "stop-instance-lambda/lambda_function.zip"
 }
 
 resource "aws_lambda_function" "check_and_stop_ec2" {
