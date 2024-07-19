@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_event_rule" "event_rule" {
-  name        = "event_rule"
+  name        = "StopEC2Instances"
   schedule_expression = "rate(10 minutes)"
 }
 
