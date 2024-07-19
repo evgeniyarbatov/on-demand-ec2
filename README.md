@@ -13,3 +13,10 @@ Ex: your have a Streamlit app which you host with [Streamlit Community Cloud](ht
 - Lambda function launches EC2 instance
 - EC2 instance does processing
 - EC2 publishes the result to SNS topic
+
+## How to use
+
+```
+tf init
+tf apply -auto-approve
+```
