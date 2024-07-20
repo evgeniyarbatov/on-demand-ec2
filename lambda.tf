@@ -1,11 +1,11 @@
 data "archive_file" "gateway_lambda_function" {
   type        = "zip"
-  source_file = "gateway-lambda/lambda_function.py"
-  output_path = "gateway-lambda/lambda_function.zip"
+  source_file = "lambda/lambda_function.py"
+  output_path = "lambda/lambda_function.zip"
 }
 
 resource "aws_lambda_function" "launch_instance" {
-  function_name = "launch_instance_function"
+  function_name = "api_gateway_ec2_lambda"
   role          = aws_iam_role.lambda_exec.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.8"
