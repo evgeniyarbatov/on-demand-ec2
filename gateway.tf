@@ -17,6 +17,8 @@ resource "aws_api_gateway_method" "get_method" {
 
   request_parameters = {
     "method.request.path.points" = true
+    "method.request.querystring.geometries" = true
+    "method.request.querystring.overview" = true
   }
 }
 
