@@ -5,14 +5,15 @@ import os
 def lambda_handler(event, context):
     ec2 = boto3.client('ec2')
 
-    points = event["pathParameters"].get("points")
-    print(points)
-
     instance_id = os.environ['INSTANCE_ID']
-
-    ec2.start_instances(InstanceIds=[instance_id])
+    type = os.environ['TYPE']
     
-    ec2.stop_instances(InstanceIds=[instance_id])
+    if type == 'start':
+        ec2.start_instances(InstanceIds=[instance_id])
+    elif type == 'stop':
+        ec2.stop_instances(InstanceIds=[instance_id])
+    elif type == 'proxy':
+        points = event["pathParameters"].get("points")
 
     return {
         'statusCode': 200, 
