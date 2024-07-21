@@ -21,7 +21,7 @@ def lambda_handler(event, context):
     waiter.wait(InstanceIds=[instance_id])
 
     response = ec2.describe_instances(InstanceIds=[instance_id])
-    public_dns = response['Reservations'][0]['Instances'][0]['PublicIpAddress']
+    public_dns = response['Reservations'][0]['Instances'][0]['PrivateIpAddress']
     
     http = urllib3.PoolManager()
     url = f"http://{public_dns}:5000/route/v1/foot/{points}"

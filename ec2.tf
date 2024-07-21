@@ -67,6 +67,10 @@ resource "aws_instance" "ec2" {
     Name = "osrm"
   }
 
+  lifecycle {
+    ignore_changes = [associate_public_ip_address]
+  }
+
   connection {
     type        = "ssh"
     user        = "ubuntu"
