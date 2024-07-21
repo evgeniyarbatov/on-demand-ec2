@@ -1,6 +1,7 @@
-import requests
+import urllib3
 import boto3
 import os
+import json
 
 def lambda_handler(event, context):
     points = event["pathParameters"].get("points")
@@ -22,14 +23,16 @@ def lambda_handler(event, context):
     response = ec2.describe_instances(InstanceIds=[instance_id])
     public_dns = response['Reservations'][0]['Instances'][0]['PublicDnsName']
     
-    response = requests.get(
-        f"http://{public_dns}:5000/route/v1/foot/{points}", 
-        params={
-            'geometries': geometries,
-            'overview': overview,
-        }
-    )
-    result = response.json()
+    http = urllib3.PoolManager()
+    url = f"http://{public_dns}:5000/route/v1/foot/{points}"
+    params = {
+        'geometries': geometries,
+        'overview': overview,
+    }
+    encoded_params = urllib3.request.urlencode(params)
+
+    response = http.request('GET', f"{url}?{encoded_params}")
+    result = json.loads(response.data.decode('utf-8'))
     
     ec2.stop_instances(InstanceIds=[instance_id])
 
