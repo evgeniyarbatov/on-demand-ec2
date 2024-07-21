@@ -2,16 +2,16 @@
 
 Launch AWS EC2 instance on getting API requests. 
 
-Usesul for cases when the volume of API requests is low to save cost running EC2 instances.
-
-Ex: your have a Streamlit app which you host with [Streamlit Community Cloud](https://streamlit.io/cloud) and you need an EC2 instance.
+Usesul for cases when the volume of API requests is low to save cost of running EC2 instances.
 
 ## Structure
 
-- API GW calls Lambda function
-- Lambda function launches EC2 instance
-- EC2 instance does processing
-- EC2 publishes the result to SNS topic
+- API GW calls Lambda function and passes URL params
+- Lambda function starts EC2 instance
+- Lambda HTTP API on EC2 instance with URL params from API GW
+- EC2 returns the response to Lambda
+- Lambda stops EC2 instance
+- Lambda returns EC2 response to API GW client
 
 ## How to use
 
