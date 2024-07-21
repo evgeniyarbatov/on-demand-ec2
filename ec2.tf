@@ -81,13 +81,8 @@ resource "aws_instance" "ec2" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt-get update -y",
-      "sudo apt-get upgrade -y",
       "curl -fsSL https://get.docker.com -o /tmp/get-docker.sh",
       "sudo sh /tmp/get-docker.sh",
-      "sudo curl -SL https://github.com/docker/compose/releases/download/v2.28.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose",
-      "sudo chmod +x /usr/local/bin/docker-compose",
-      "sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose",
       "sudo cp osrm.service /etc/systemd/system/osrm.service",
       "sudo service docker start",
       "sudo systemctl daemon-reload",
