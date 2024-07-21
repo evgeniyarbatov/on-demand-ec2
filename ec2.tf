@@ -84,6 +84,7 @@ resource "aws_instance" "ec2" {
       "curl -fsSL https://get.docker.com -o /tmp/get-docker.sh",
       "sudo sh /tmp/get-docker.sh",
       "sudo cp osrm.service /etc/systemd/system/osrm.service",
+      "sudo systemctl enable docker",
       "sudo service docker start",
       "sudo systemctl daemon-reload",
       "sudo systemctl enable osrm",
