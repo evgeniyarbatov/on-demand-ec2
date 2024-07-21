@@ -11,8 +11,13 @@ resource "aws_lambda_function" "process_request" {
   runtime       = "python3.8"
   timeout       = 600
 
-  filename      = data.archive_file.gateway_lambda_function.output_path
+  filename         = data.archive_file.gateway_lambda_function.output_path
   source_code_hash = data.archive_file.gateway_lambda_function.output_base64sha256
+
+  vpc_config {
+    subnet_ids         = [aws_subnet.osrm_subnet.id]
+    security_group_ids = [aws_security_group.ec2-sec-gr.id]
+  }
 
   environment {
     variables = {
