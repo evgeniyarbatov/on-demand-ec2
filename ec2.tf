@@ -64,6 +64,12 @@ resource "aws_instance" "ec2" {
     Name = "osrm"
   }
 
+  ebs_block_device {
+    device_name = "/dev/sda1"
+    volume_size = 8
+    volume_type = "gp3"
+  }
+
   connection {
     type        = "ssh"
     user        = "ubuntu"
