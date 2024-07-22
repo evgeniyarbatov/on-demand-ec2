@@ -29,7 +29,10 @@ def lambda_handler(event, context):
     response = http.request('GET', f"{url}?{encoded_params}")    
     result = response.data.decode('UTF-8')
 
-    ec2.stop_instances(InstanceIds=[instance_id])
+    ec2.stop_instances(
+        InstanceIds=[instance_id],
+        Hibernate=True,
+    )
 
     return {
         'statusCode': 200, 

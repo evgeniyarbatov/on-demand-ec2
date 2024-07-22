@@ -102,5 +102,4 @@ resource "aws_instance" "ec2" {
 resource "aws_ec2_instance_state" "stop" {
   instance_id = aws_instance.ec2.id
   state       = "stopped"
-  force       = true
 }
