@@ -60,17 +60,8 @@ resource "aws_instance" "ec2" {
   key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.ec2-sec-gr.id]
 
-  hibernation = true
-
   tags = {
     Name = "osrm"
-  }
-
-  ebs_block_device {
-    device_name = "/dev/sda1"
-    volume_size = 8
-    volume_type = "gp3"
-    encrypted = "true"
   }
 
   connection {

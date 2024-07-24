@@ -18,7 +18,8 @@ Useful for cases when the volume of API requests is low to save cost of running 
 ```
 tf init
 tf apply -auto-approve
-tf output -raw curl
+tf output -raw start_ec2_curl
+tf output -raw query_ec2_curl
 tf destroy -auto-approve
 ```
 
