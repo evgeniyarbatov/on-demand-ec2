@@ -22,7 +22,3 @@ tf output -raw start_ec2_curl
 tf output -raw query_ec2_curl
 tf destroy -auto-approve
 ```
-
-## Gotchas
-
-- EC2 instance takes ~1 minute to start. First API GW call will timeout
