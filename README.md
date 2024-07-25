@@ -6,12 +6,12 @@ Useful for cases when the volume of API requests is low to save cost of running 
 
 ## Structure
 
+- Lambda starts EC2 instance on getting API GW call
 - API GW calls Lambda and passes URL params
-- Lambda starts EC2 instance
 - Lambda makes HTTP API call to EC2 instance
 - EC2 returns the response to Lambda
-- Lambda stops EC2 instance
 - Lambda returns EC2 response to API GW client
+- Event Bridge stops EC2 instance if was launched more than 10 minutes ago.
 
 ## How to use
 
